@@ -23,11 +23,9 @@
 </head>
 
 <body class="bg-gradient-primary">
-
-    <!-- @if ($errors->any())
-    @dd($errors->all())
-    @endif -->
-
+    {{-- @if ($errors->any())
+        @dd($errors->all())
+    @endif --}}
     <div class="container">
 
         <!-- Outer Row -->
@@ -45,26 +43,34 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Registrasi</h1>
                                     </div>
-                                    <form class="user" action="/register" method="post">
+                                    <form class="user" action="/register" method="POST" onsubmit="const submitBtn = document.getElementById('submitBtn'); submitBtn.disabled = true; submitBtn.textContent = 'Loading...'">
                                         @csrf
-                                        @method('post')
+                                        @method('POST')
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="InputEmail" name="name" placeholder="Full name">
+                                            <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror"
+                                                id="inputName" name="name" placeholder="Enter Full Name...">
+                                            @error ('name')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="InputEmail" name="email" aria-describedby="emailHelp"
+                                            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                                                id="inputEmail" name="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
+                                            @error ('email')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="InputPassword" placeholder="Password">
+                                            <input type="password" name="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                                                id="inputPassword" placeholder="Password">
+                                            @error ('password')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Simpan
+                                        <button id="submitBtn" type="submit" class="btn btn-primary btn-user btn-block">
+                                            Register
                                         </button>
-                                        <hr>
                                     </form>
                                     <hr>
                                     <div class="text-center">

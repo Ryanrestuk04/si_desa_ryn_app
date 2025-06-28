@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="confirmationDelete-{{ $item->id }}" tabindex="-1" aria-labelledby="confirmationDeleteLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/resident/{{ $item->id }}" method="post">
+    <form action="/complaint/{{ $item->id }}" method="post">
         @csrf
         @method('DELETE')
     <div class="modal-content">
@@ -12,7 +12,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <span>Apakah anda yakin ingin menghapus data ini?</span>
+        <span>Apakah anda yakin ingin menghapus laporan ini?</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

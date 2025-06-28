@@ -1,22 +1,23 @@
 <!-- Modal -->
-<div class="modal fade" id="confirmationDelete-{{ $item->id }}" tabindex="-1" aria-labelledby="confirmationDeleteLabel" aria-hidden="true">
+<div class="modal fade" id="confirmationReject-{{ $item->id }}" tabindex="-1" aria-labelledby="confirmationRejectLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/resident/{{ $item->id }}" method="post">
+    <form action="/account-request/approval/{{ $item->id }}" method="post">
         @csrf
-        @method('DELETE')
+        @method('POST')
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title fs-5" id="confirmationDeleteLabel">Konfirmasi Hapus</h4>
+        <h4 class="modal-title fs-5" id="confirmationRejectLabel">Konfirmasi Tolak</h4>
         <button type="button" class="btn btn-default" data-bs-dismiss="modal" aria-label="Close">
             <i class="fas fa-times"></i>
         </button>
       </div>
       <div class="modal-body">
-        <span>Apakah anda yakin ingin menghapus data ini?</span>
+        <input type="hidden" name="for" value="reject">
+        <span>Apakah anda yakin ingin menolak akun ini?</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="submit" class="btn btn-danger">Reject</button>
       </div>
     </div>
     </form>
